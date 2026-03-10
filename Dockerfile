@@ -14,8 +14,10 @@ RUN npm install --production
 COPY backend/ ./
 
 # Copy frontend build to backend public directory
-# Adjust the destination path based on where your Express app serves static files
 COPY --from=frontend-build /app/frontend/build ./public
 
+# Set the port to 3000 so it matches the EXPOSE and your localhost attempt
+ENV PORT=3000
 EXPOSE 3000
+
 CMD ["npm", "start"]
